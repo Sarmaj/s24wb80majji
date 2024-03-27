@@ -2,9 +2,33 @@ extends layout
 
 block content
   h1= title
-  - var Vegetables = [ { Vegetables_price: 230, Vegetables_Name: 'Carrot', Vegetable_Quality: 'Good'},{Vegetables_price: 135, Vegetables_Name: 'Beetroot', Vegetable_Quality: 'Good'},{Vegetables_price: 160, Vegetables_Name: 'Cauliflower', Vegetable_Quality: 'Good'}]
+   - 
+    let vegetables = [
+          {
+             "Vegetables_price": 230,
+             "Vegetables_Name": "Carrot",
+             "Vegetable_Quality": Good
+          },
+          {
+            "Vegetables_price": 135,
+             "Vegetables_Name": "Beetroot",
+             "Vegetable_Quality": Good
+          },
+          {
+             "Vegetables_price": 160,
+             "Vegetables_Name": "Cauliflower",
+             "Vegetable_Quality": Good
+          },                   
+      ]
   
   div(class="container-fluid")
     div(class="row")
-      each item in Vegetables
-        div(class="col-sm-2") #{item.Vegetables_price}, #{item.Vegetables_Name}, #{item.Vegetable_Quality}
+      each item, index in vegetables
+        div(class="col-sm-2", onclick=`buy(${index})`)
+          | #{item.Vegetables_price}, #{item.Vegetables_Name}, #{item.Vegetable_Quality}
+      
+  script.
+    function buy(index)
+    {
+      alert("You Purchased item " +index);
+    }
